@@ -3,7 +3,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const port: number = +process.env.PORT | 3000;
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api/v2')
   app.useGlobalPipes(
@@ -16,7 +15,7 @@ async function bootstrap() {
       }
     })
   )
-  await app.listen(port);
-  console.log(`App running on port ${port}`)
+  await app.listen(process.env.PORT || 3002);
+  console.log(`App running on port ${process.env.PORT || 3002}`)
 }
 bootstrap();
